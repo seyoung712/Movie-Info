@@ -1,0 +1,38 @@
+.top-title{
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+.top-title img{
+    width: 450px;
+}
+
+.category{
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid black;
+    border-bottom: 1px double black;
+}
+
+.category button{
+    border: none;
+    background: none;
+    margin: 3px;
+}
+
+.category button:hover{
+    background-color: lightslategrey;
+}
+
+.movie-img-size{
+    max-width: 100%;
+    max-height: 300px;
+}
+
+/*
+.movie-area{
+    margin: 3px;
+}
+*/
