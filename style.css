@@ -31,8 +31,89 @@
     max-height: 300px;
 }
 
-/*
-.movie-area{
-    margin: 3px;
+
+/* 없으면 가로 아니게 됨
+.movie-item{
+    display: flex;
+    /*justify-content: center;
+
+    width: 100%;
 }
 */
+
+.movie-inner{
+    width: 20%;
+    float: left;
+}
+
+.movie-content{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.movie-title{
+    max-width: 100%;
+    max-height: 25px;
+    margin-left: 8px;
+    margin-right: 8px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.movie-genres{
+    max-width: 100%;
+    max-height: 25px;
+    overflow: hidden;
+    margin-left: 8px;
+    margin-right: 8px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.movie-etc{
+    max-width: 100%;
+    max-height: 25px;
+    overflow: hidden;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.style-wrap > .style-outbox:hover .animation{
+    animation-play-state: paused;
+}
+
+/*api를 감싸는 box*/
+.style-wrap > .style-outbox .movie-item {
+    width: 100%;
+    height: 450px;
+    background-color: gray;
+    display: flex; /*가로배치*/
+    text-align: center;
+}
+
+
+.animation{
+    animation-name: infinite_slide;
+    animation-duration: 10s; /*10초간 move*/
+    animation-timing-function: linear;
+    animation-iteration-count: infinite; /*끊기지 않고 무한히*/
+}
+
+@keyframes infinite_slide{
+    /*애니메이션을 절반만 이동하게 하고 다시 돌아와서 무한히 움직이는 것처럼 보임*/
+    0%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(-50%);
+    }
+}
+
