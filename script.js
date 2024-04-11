@@ -1,9 +1,11 @@
 //?sort_by=like_count
 
 let movieList = [];
+const category = document.querySelectorAll(".category button");
+console.log("cc",category);
 
 const getMovie = async () => {
-  const url = new URL(`https://yts.mx/api/v2/list_movies.json`);
+  const url = new URL(`https://yts.mx/api/v2/list_movies.json?sort_by=like_count`);
 
   const response = await fetch(url);
   const result = await response.json();
@@ -38,6 +40,7 @@ const renderAll = () => {
             </div>
             <div class="movie-content">
                 <div class="movie-title card-title"><h5>${movie.title}</h5></div>
+                <br>
                 <div class="movie-genres card-text">${movie.genres}</div>
                 <div class="movie-etc card-text">Rating ${movie.rating} / Runtime ${movie.runtime}</div>
             </div>

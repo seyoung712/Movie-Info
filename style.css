@@ -1,3 +1,15 @@
+body {
+    color: #fff;
+    background: black;
+    
+    justify-content: center;
+    display: flex;
+
+    align-content: center;
+    /*align-items: center;*/
+    text-align: center;
+}
+
 .top-title{
     margin-top: 1em;
     display: flex;
@@ -8,12 +20,23 @@
     width: 450px;
 }
 
-.category{
+.line{
     margin-top: 1em;
+    margin-bottom: 1em;
     display: flex;
     justify-content: center;
-    border-top: 1px solid black;
-    border-bottom: 1px double black;
+    
+    border-top: 1px solid #fff;
+    border-bottom: 1px double #fff;
+}
+
+
+.text-top{
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    
+    text-align: left;
 }
 
 .category button{
@@ -44,6 +67,8 @@
 .movie-inner{
     width: 20%;
     float: left;
+    background: rgb(37, 37, 37);
+    color: #fff;
 }
 
 .movie-content{
@@ -86,6 +111,8 @@
     margin-right: 8px;
 }
 
+
+/*마우스 올리면 멈추기*/
 .style-wrap > .style-outbox:hover .animation{
     animation-play-state: paused;
 }
@@ -94,7 +121,6 @@
 .style-wrap > .style-outbox .movie-item {
     width: 100%;
     height: 450px;
-    background-color: gray;
     display: flex; /*가로배치*/
     text-align: center;
 }
@@ -102,18 +128,35 @@
 
 .animation{
     animation-name: infinite_slide;
-    animation-duration: 10s; /*10초간 move*/
+    animation-duration: 15s; /*10초간 move*/
     animation-timing-function: linear;
     animation-iteration-count: infinite; /*끊기지 않고 무한히*/
 }
 
 @keyframes infinite_slide{
-    /*애니메이션을 절반만 이동하게 하고 다시 돌아와서 무한히 움직이는 것처럼 보임*/
     0%{
         transform: translateX(0%);
     }
     100%{
         transform: translateX(-270%);
+    }
+}
+
+
+
+.btn-css:hover,
+.btn-css:focus{
+    box-shadow: inset 0 0 0 2em var(--hover);
+}
+
+button {
+    color: var(--color);
+    transition: 0.3s;
+    
+    &:hover,
+    &:focus { 
+      border-color: var(--hover);
+      color: #fff;
     }
 }
 
