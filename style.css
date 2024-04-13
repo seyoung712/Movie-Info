@@ -49,6 +49,19 @@ body {
     background-color: lightslategrey;
 }
 
+.category-box{
+    justify-content: center;
+    display: flex;
+}
+/*
+.category{
+    background-color: none;
+    width: 75%;
+    border-top: 1px solid rgb(152, 3, 3); 
+    border-bottom: 1px solid rgb(152, 3, 3);
+}
+*/
+
 .movie-img-size{
     max-width: 100%;
     max-height: 300px;

@@ -6,7 +6,7 @@ category.forEach((category) =>
   category.addEventListener("click", (event) => getMovieCategory(event))
 );
 
-const getMovie = async () => {
+const getMovieTop = async () => {
   const url = new URL(
     `https://yts.mx/api/v2/list_movies.json?sort_by=like_count`
   );
@@ -19,16 +19,16 @@ const getMovie = async () => {
 };
 
 /*genre=${category}*/
-const getMovieCategory = async(event) => {
-  const category = event.target.textContent
-  console.log("category",category);
+const getMovieCategory = async() => {
+  //const category = event.target.textContent
+  //console.log("category",category);
   const url = new URL(`https://yts.mx/api/v2/list_movies.json`);
 
   const response = await fetch(url);
   const result = await response.json();
-  movieListAll = result.result.movies;
+  movieListAll = result.data.movies;
   renderAll();
-  console.log("data",movieListAll);
+  console.log("data2",movieListAll);
 };
 
 
@@ -41,6 +41,7 @@ const render = () => {
             <div>
                 <div>
                 <img class="movie-img-size card-body" src="${movie.medium_cover_image}"/>
+                </div>
             </div>
             <div class="movie-content">
                 <div class="movie-title card-title"><h5>${movie.title}</h5></div>
@@ -65,6 +66,7 @@ const renderAll = () => {
               <div>
                   <div>
                   <img class="movie-img-size card-body" src="${movie.medium_cover_image}"/>
+                  </div>
               </div>
               <div class="movie-content">
                   <div class="movie-title card-title"><h5>${movie.title}</h5></div>
@@ -80,5 +82,5 @@ const renderAll = () => {
     document.getElementById("movie-list-all").innerHTML = movieAllHTML;
   };
 
-getMovie();
+getMovieTop();
 getMovieCategory();
