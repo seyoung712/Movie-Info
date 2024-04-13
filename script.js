@@ -1,49 +1,51 @@
 let movieListTop = [];
 let movieListAll = [];
 
+/*카테고리 목록 가져오기*/
 const menus = document.querySelectorAll(".category button");
-menus.forEach(menu =>
+menus.forEach((menu) =>
   menu.addEventListener("click", (event) => ByCategory(event))
 );
 
+
+let url = new URL(`https://yts.mx/api/v2/list_movies.json`);
+const getMovieUrl = async () => {
+  const response = await fetch(url);
+  const result = await response.json();
+  movieListAll = result.data.movies; //데이터가 .data.movies에 존재
+  renderAll();
+};
+
+/*TOP20*/
 const getMovieTop = async () => {
-  const url = new URL(
+  url = new URL(
     `https://yts.mx/api/v2/list_movies.json?sort_by=like_count`
   );
 
   const response = await fetch(url);
   const result = await response.json();
-  movieListTop = result.data.movies; //데이터가 .data.movies에 존재
+  movieListTop = result.data.movies;
   render();
   console.log("data", movieListTop);
 };
 
-/*genre=${category}*/
-const ByCategory = async(Event) => {
-  const category = event.target.textContent;
-  console.log("categ",category);
-  
-  const url = new URL(
-    `https://yts.mx/api/v2/list_movies.json?genre=${category}`
-  );
-  const response = await fetch(url);
-  const result = await response.json();
-  console.log("data",result);
-  movieListAll = result.data.movies; //데이터가 .data.movies에 존재
-  renderAll();
-}
-
 /*all*/
-const getMovieCategory = async() => {
-  const url = new URL(`https://yts.mx/api/v2/list_movies.json`);
-
-  const response = await fetch(url);
-  const result = await response.json();
-  movieListAll = result.data.movies;
-  renderAll();
-  console.log("data2",movieListAll);
+const getMovieCategory = async () => {
+  url = new URL(`https://yts.mx/api/v2/list_movies.json`);
+  getMovieUrl();
+  console.log("data2", movieListAll);
 };
 
+/*genre=${category}*/
+const ByCategory = async (Event) => {
+  const category = event.target.textContent;
+  console.log("categ", category);
+
+  url = new URL(
+    `https://yts.mx/api/v2/list_movies.json?genre=${category}`
+  );
+  getMovieUrl();
+};
 
 /* TOP20 */
 const render = () => {
@@ -72,10 +74,10 @@ const render = () => {
 
 /*전체*/
 const renderAll = () => {
-    const movieAllHTML = movieListAll
-      .map(
-        (movie) =>
-          `<span class="col-lg-2 card movie-inner">
+  const movieAllHTML = movieListAll
+    .map(
+      (movie) =>
+        `<span class="col-lg-2 card movie-inner">
               <div>
                   <div>
                   <img class="movie-img-size card-body" src="${movie.medium_cover_image}"/>
@@ -89,11 +91,11 @@ const renderAll = () => {
               </div>
               </div>
           </span>`
-      )
-      .join("");
-  
-    document.getElementById("movie-list-all").innerHTML = movieAllHTML;
-  };
+    )
+    .join("");
+
+  document.getElementById("movie-list-all").innerHTML = movieAllHTML;
+};
 
 getMovieTop();
 getMovieCategory();
