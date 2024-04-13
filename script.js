@@ -1,9 +1,9 @@
 let movieListTop = [];
 let movieListAll = [];
 
-const category = document.querySelectorAll(".category button");
-category.forEach((category) =>
-  category.addEventListener("click", (event) => getMovieCategory(event))
+const menus = document.querySelectorAll(".category button");
+menus.forEach(menu =>
+  menu.addEventListener("click", (event) => ByCategory(event))
 );
 
 const getMovieTop = async () => {
@@ -13,15 +13,28 @@ const getMovieTop = async () => {
 
   const response = await fetch(url);
   const result = await response.json();
-  movieListTop = result.data.movies;
+  movieListTop = result.data.movies; //데이터가 .data.movies에 존재
   render();
   console.log("data", movieListTop);
 };
 
 /*genre=${category}*/
+const ByCategory = async(Event) => {
+  const category = event.target.textContent;
+  console.log("categ",category);
+  
+  const url = new URL(
+    `https://yts.mx/api/v2/list_movies.json?genre=${category}`
+  );
+  const response = await fetch(url);
+  const result = await response.json();
+  console.log("data",result);
+  movieListAll = result.data.movies; //데이터가 .data.movies에 존재
+  renderAll();
+}
+
+/*all*/
 const getMovieCategory = async() => {
-  //const category = event.target.textContent
-  //console.log("category",category);
   const url = new URL(`https://yts.mx/api/v2/list_movies.json`);
 
   const response = await fetch(url);
