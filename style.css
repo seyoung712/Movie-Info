@@ -39,6 +39,30 @@ body {
     text-align: left;
 }
 
+.outer-search{
+    display: flex;
+    justify-content : center;
+}
+
+.inner-search{
+    height: 40px;
+    width: 250px;
+    background-color: #fff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.search-input{
+    border: none;
+    height: 30px;
+}
+
+.search-img{
+    cursor:pointer;
+    height: 30px;
+    width: 30px;
+}
+
 .category button{
     border: none;
     background: none;
@@ -173,3 +197,7 @@ button {
     }
 }
 
+.error{
+    color: red;
+    font-size: 15pt;
+}

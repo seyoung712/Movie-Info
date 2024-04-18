@@ -30,8 +30,13 @@
 
       <div class="line"></div>
       <br><br>
-      <input type="text" id="search-input"/><button onclick="searchKeyword()">검색</button>
-      <br><br><br>
+      <div class="outer-search">
+        <div class="inner-search">
+          <input type="text" id="search-input" class="search-input" placeholder="제목을 검색하세요.">
+          <img src="./search.png" class="search-img" onclick="searchKeyword()">
+        </div>
+      </div>
+      <br>
 
       <section class="category-box">
         <div class="category">
