@@ -7,7 +7,6 @@ menus.forEach((menu) =>
   menu.addEventListener("click", (event) => ByCategory(event))
 );
 
-
 let url = new URL(`https://yts.mx/api/v2/list_movies.json`);
 const getMovieUrl = async () => {
   const response = await fetch(url);
@@ -18,33 +17,45 @@ const getMovieUrl = async () => {
 
 /*TOP20*/
 const getMovieTop = async () => {
-  url = new URL(
-    `https://yts.mx/api/v2/list_movies.json?sort_by=like_count`
-  );
+  url = new URL(`https://yts.mx/api/v2/list_movies.json?sort_by=like_count`);
 
   const response = await fetch(url);
   const result = await response.json();
   movieListTop = result.data.movies;
   render();
-  console.log("data", movieListTop);
+  //console.log("data", movieListTop);
 };
 
 /*all*/
 const getMovieCategory = async () => {
   url = new URL(`https://yts.mx/api/v2/list_movies.json`);
   getMovieUrl();
-  console.log("data2", movieListAll);
+  //console.log("data2", movieListAll);
 };
 
 /*genre=${category}*/
 const ByCategory = async (Event) => {
   const category = event.target.textContent;
-  console.log("categ", category);
+  //console.log("categ", category);
 
-  url = new URL(
-    `https://yts.mx/api/v2/list_movies.json?genre=${category}`
-  );
+  url = new URL(`https://yts.mx/api/v2/list_movies.json?genre=${category}`);
   getMovieUrl();
+};
+
+/* 키워드 검색 */
+const searchKeyword = async() => {
+  const keyword = document.getElementById("search-input").value;
+  const url = new URL(
+    `https://yts.mx/api/v2/list_movies.json?query_term=${keyword}`
+  );
+
+  const response = await fetch(url)
+  const result = await response.json();
+  
+  //console.log("keyword", result);
+
+  movieListAll = result.data.movies;
+  renderAll()
 };
 
 /* TOP20 */
